@@ -1,4 +1,4 @@
-package com.tecsup.petclinic.web;
+package com.tecsup.petclinic.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-//import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tecsup.petclinic.domain.Pet;
-import com.tecsup.petclinic.domain.PetDTO;
+import com.tecsup.petclinic.dto.PetDTO;
+import com.tecsup.petclinic.entities.Pet;
 import com.tecsup.petclinic.exception.PetNotFoundException;
-import com.tecsup.petclinic.service.PetService;
+import com.tecsup.petclinic.services.PetService;
 
 /**
  * 
@@ -47,12 +46,20 @@ public class PetController {
 	 * @param newPet
 	 * @return
 	 */
+	/*
 	@PostMapping("/pets")
 	@ResponseStatus(HttpStatus.CREATED)
 	Pet create(@RequestBody Pet newPet) {
 		return service.create(newPet);
-	}
-	/*
+	}*/
+	
+	/**
+	 *  Create Pet
+	 * @param newPet
+	 * @return
+	 */
+	@PostMapping("/pets")
+	@ResponseStatus(HttpStatus.CREATED)
 	Pet create(@RequestBody PetDTO newPet) {
 		Pet pet = new Pet();
 		pet.setName(newPet.getName());
@@ -60,7 +67,7 @@ public class PetController {
 		pet.setTypeId(newPet.getTypeId());
 		pet.setBirthDate(newPet.getBirthDate());
 		return service.create(pet);
-	}*/
+	}
 	
 	
 	
