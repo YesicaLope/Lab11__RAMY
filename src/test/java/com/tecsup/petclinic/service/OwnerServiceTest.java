@@ -1,5 +1,7 @@
 package com.tecsup.petclinic.service;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -10,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.tecsup.petclinic.domain.Owner;
-import com.tecsup.petclinic.exception.OwnertNotFoundException;
+import com.tecsup.petclinic.exception.OwnerNotFoundException;
 import com.tecsup.petclinic.exception.PetNotFoundException;
 
 @SpringBootTest
@@ -26,17 +28,20 @@ public class OwnerServiceTest {
 	 * 
 	 */
 	@Test
-	public void testFindOwnerById() throws OwnertNotFoundException, PetNotFoundException {
+	public void testFindOwnerById() {
 
 		long ID = 1;
 		String NAME = "Jaime";
 		Owner owner = null;
+		try {
+			owner = ownerService.findById(ID);
+		} catch (OwnerNotFoundException e) {
+			assertThat(e.getMessage(), false);
+		}
+		logger.info(""+ owner);
+
+		assertThat(NAME, is(owner.getFirstname()));
 		
-		owner = ownerService.findById(ID);
-		logger.info("" + owner);
-
-		assertEquals(NAME, owner.getFirstname());
-
 	}
 	
 }

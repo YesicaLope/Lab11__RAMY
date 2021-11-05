@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tecsup.petclinic.domain.Owner;
 import com.tecsup.petclinic.domain.Pet;
+import com.tecsup.petclinic.exception.OwnerNotFoundException;
 import com.tecsup.petclinic.exception.PetNotFoundException;
 
 public interface OwnerService {
@@ -19,16 +20,16 @@ public interface OwnerService {
 	/**
 	 * 
 	 * @param id
-	 * @throws PetNotFoundException
+	 * @throws OwnerNotFoundException
 	 */
-	void delete(Long id) throws PetNotFoundException;
+	void delete(Long id) throws OwnerNotFoundException;
 
 	/**
 	 * 
 	 * @param id
 	 * @return
 	 */
-	Owner findById(long id) throws PetNotFoundException;
+	Owner findById(long id) throws OwnerNotFoundException;
 
 	/**
 	 * 
